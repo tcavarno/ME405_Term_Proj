@@ -1,6 +1,9 @@
 import mlx_cam
 import machine
 import TurretDriver
+
+
+
 def cam_test():
     cam = machine.I2C(1)
     print(f"addy {machine.I2C.scan(cam)}")
