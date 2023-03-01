@@ -6,7 +6,7 @@ var NAVTREE =
         [ "Task_Diagram", "index.html#Task_Diagram", null ],
         [ "Pitch_State_Diagram", "index.html#Pitch_State_Diagram", null ],
         [ "Yaw_State_Diagram", "index.html#Yaw_State_Diagram", null ],
-        [ "Camera_Processing_Diagram", "index.html#Camera_Processing_Diagram", null ]
+        [ "Shooting_State_Diagram", "index.html#Shooting_State_Diagram", null ]
       ] ]
     ] ],
     [ "Melexis MLX90640 Thermal Camera Drivers", "autotoc_md0.html", null ],
