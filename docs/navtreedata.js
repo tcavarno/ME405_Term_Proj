@@ -1,10 +1,10 @@
 var NAVTREE =
 [
   [ "ME 405 Term Project", "index.html", [
-    [ "Melexis MLX90640 Thermal Camera Drivers", "autotoc_md0.html", null ],
-    [ "Namespaces", null, [
-      [ "Namespace List", "namespaces.html", "namespaces" ]
+    [ "ME405", "index.html", [
+      [ "Somethgin", "index.html#test", null ]
     ] ],
+    [ "Melexis MLX90640 Thermal Camera Drivers", "autotoc_md0.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
