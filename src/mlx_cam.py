@@ -233,7 +233,7 @@ if __name__ == "__main__":
                     print(line)
             else:
                 camera.ascii_art(image.v_ir)
-            time.sleep_ms(10000)
+            time.sleep_ms(500)
 
         except KeyboardInterrupt:
             break
