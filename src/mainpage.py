@@ -6,7 +6,7 @@
     @subsection Pitch_State_Diagram
     \image html Pitch_Diagram.drawio.png
     @subsection Yaw_State_Diagram
-    \image html Yaw_Diagram.drawio.png
+    \image html Yaw_Diagram.drawio (copy).png
     @subsection Shooting_State_Diagram
     \image html Camera.drawio.png
     
