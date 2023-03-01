@@ -1,7 +1,5 @@
 var annotated_dup =
 [
-    [ "Quick Start", "autotoc_md0.html#autotoc_md1", null ],
-    [ "Detailed Version", "autotoc_md0.html#autotoc_md2", null ],
     [ "ClosedLoopController", null, [
       [ "PController", "classClosedLoopController_1_1PController.html", "classClosedLoopController_1_1PController" ]
     ] ],
