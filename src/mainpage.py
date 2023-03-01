@@ -5,6 +5,6 @@
     \image html Task_Diagram.drawio.png
     @subsection Pitch_State_Diagram
     @subsection Yaw_State_Diagram
-    @subsections Camera_Processing
+    @subsection Camera_Processing_Diagram
     
 '''
