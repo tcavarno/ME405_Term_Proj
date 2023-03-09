@@ -85,7 +85,7 @@ def steptest():
                 if(byte_.decode() == "clear"):
                     system("clear")
                 else:
-                    print(msg = byte_.decode()+"\n")
+                    print(byte_.decode())
                  
 
 
