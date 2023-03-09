@@ -71,7 +71,7 @@ def steptest():
     """
     data = []
     #Open serial port
-    with serial.Serial ('/dev/ttyACM0', 115200,timeout=6) as s_port:
+    with serial.Serial ('/dev/cu.usbmodem207C337057522', 115200,timeout=6) as s_port:
            print(f"Starting")
            #Send Kp using UTF-8 encoding
            s_port.write("start\r".encode())
