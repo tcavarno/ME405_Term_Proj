@@ -38,6 +38,7 @@ def cam_stream():
             # could also be written to a file. Spreadsheets, Matlab(tm), or
             # CPython can read CSV and make a decent false-color heat plot.
             camera.ascii_image(image)
+            print("clear")
 
         except KeyboardInterrupt:
             break

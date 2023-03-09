@@ -1,6 +1,6 @@
 from array import array
 import serial
-import os
+from os import system
 
 """!
 @file camera_viewer.py
@@ -79,11 +79,13 @@ def steptest():
            msg = ""
            byte_ = s_port.readline()
            # Read the data sent from the controller while valid data is buffered and split into lists
-           while(byte_):
-                 
-                 byte_ = s_port.readline()
-                 #Decode data into a string and print
-                 print(msg = byte_.decode()+"\n")
+           while(byte_): 
+                byte_ = s_port.readline()
+                #Decode data into a string and print
+                if(byte_.decode() == "clear"):
+                    system("clear")
+                else:
+                    print(msg = byte_.decode()+"\n")
                  
 
 
