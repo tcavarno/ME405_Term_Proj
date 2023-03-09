@@ -45,18 +45,6 @@ class PController:
         Calculate a new duty cycle using Kp and positional error.
         @param actual	Encoder tick reading
         """
-        #Initialize start time if there is none 
-        if self.time_start == None:
-            self.time_start = utime.ticks_ms()
-            #Generate first encoder reading at time 0
-            self.times.append(0)
-            self.ticks.append(actual)
-        #If controller is running, read time and ricks
-        else:
-            #Find difference between start time and current time
-            self.times.append(utime.ticks_ms()-self.time_start)
-            #Store corresponding encoder reading 
-            self.ticks.append(actual)
         #Calculate positional error
         err = self.target - actual
         #Return duty cycle calculated as Kp*error, capped at +100/-100
