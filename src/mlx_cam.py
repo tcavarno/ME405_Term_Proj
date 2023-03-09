@@ -107,7 +107,7 @@ class MLX_Cam:
             for col in range(self._width):
                 pix = int((array[row * self._width + (self._width - col - 1)]
                            - minny) * scale)
-                if(pix<100):
+                if(pix<128):
                     pix = 0
                 print(f"\033[38;2;{pix};{pix};{pix}m{pixel}", end='')
             print(f"\033[38;2;{textcolor}m")
