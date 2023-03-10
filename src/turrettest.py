@@ -32,7 +32,7 @@ def cam_stream():
         try:
             # Get and image and see how long it takes to grab that image
             begintime = time.ticks_ms()
-            image = camera.get_image().buf
+            image = camera.get_image()
             # Can show image.v_ir, image.alpha, or image.buf; image.v_ir best?
             # Display pixellated grayscale or numbers in CSV format; the CSV
             # could also be written to a file. Spreadsheets, Matlab(tm), or
