@@ -28,8 +28,7 @@ import utime as time
 from machine import Pin, I2C
 from mlx90640 import MLX90640
 from mlx90640.calibration import NUM_ROWS, NUM_COLS, IMAGE_SIZE, TEMP_K
-from mlx90640.image import ChessPattern, InterleavedPattern
-
+from mlx90640.image import ChessPattern
 
 class MLX_Cam:
     """!
@@ -69,7 +68,7 @@ class MLX_Cam:
         self._image = self._camera.raw
 
 
-    def ascii_image(self, array, pixel="██", textcolor="0;180;0"):
+    def ascii_image(self, array,biggest: dict, pixel="██", textcolor="0;180;0",):
         """!
         @brief   Show low-resolution camera data as shaded pixels on a text
                  screen.
@@ -107,7 +106,8 @@ class MLX_Cam:
             for col in range(self._width):
                 pix = int((array[row * self._width + (self._width - col - 1)]
                            - minny) * scale)
-                if(pix<128):
+                hashval = str(col)+","+str(row)
+                if(not hashval in biggest):
                     pix = 0
                 print(f"\033[38;2;{pix};{pix};{pix}m{pixel}", end='')
             print(f"\033[38;2;{textcolor}m")
@@ -183,7 +183,6 @@ class MLX_Cam:
         for subpage in (0, 1):
             while not self._camera.has_data:
                 time.sleep_ms(50)
-                print('.', end='')
             image = self._camera.read_image(subpage)
 
         return image

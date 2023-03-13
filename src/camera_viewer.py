@@ -71,7 +71,7 @@ def steptest():
     """
     data = []
     #Open serial port
-    with serial.Serial ('/dev/cu.usbmodem207C337057522', 115200,timeout=6) as s_port:
+    with serial.Serial ('/dev/ttyACM0', 115200,timeout=6) as s_port:
            print(f"Starting")
            #Send Kp using UTF-8 encoding
            s_port.write("start\r".encode())
@@ -82,10 +82,11 @@ def steptest():
            while(byte_): 
                 byte_ = s_port.readline()
                 #Decode data into a string and print
-                if(byte_.decode() == "clear"):
+                msg = byte_.decode()
+                if(msg.strip() == "clear"):
                     system("clear")
                 else:
-                    print(byte_.decode())
+                    print(byte_.decode(),end='')
                  
 
 
