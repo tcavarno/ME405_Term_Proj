@@ -30,6 +30,7 @@ from mlx90640 import MLX90640
 from mlx90640.calibration import NUM_ROWS, NUM_COLS, IMAGE_SIZE, TEMP_K
 from mlx90640.image import ChessPattern
 
+
 class MLX_Cam:
     """!
     @brief   Class which wraps an MLX90640 thermal infrared camera driver to
@@ -68,7 +69,51 @@ class MLX_Cam:
         self._image = self._camera.raw
 
 
-    def ascii_image(self, array,biggest: dict, pixel="██", textcolor="0;180;0",):
+    def ascii_image_dfs(self, array,biggest: dict, pixel="██", textcolor="0;180;0",):
+        """!
+        @brief   Show low-resolution camera data as shaded pixels on a text
+                 screen.
+        @details The data is printed as a set of characters in columns for the
+                 number of rows in the camera's image size. This function is
+                 intended for testing an MLX90640 thermal infrared sensor.
+
+                 A pair of extended ACSII filled rectangles is used by default
+                 to show each pixel so that the aspect ratio of the display on
+                 screens isn't too smushed. Each pixel is colored using ANSI
+                 terminal escape codes which work in only some programs such as
+                 PuTTY.  If shown in simpler terminal programs such as the one
+                 used in Thonny, the display just shows a bunch of pixel
+                 symbols with no difference in shading (boring).
+
+                 A simple auto-brightness scaling is done, setting the lowest
+                 brightness of a filled block to 0 and the highest to 255. If
+                 there are bad pixels, this can reduce contrast in the rest of
+                 the image.
+
+                 After the printing is done, character color is reset to a
+                 default of medium-brightness green, or something else if
+                 chosen.
+        @param   array An array of (self._width * self._height) pixel values
+        @param   pixel Text which is shown for each pixel, default being a pair
+                 of extended-ASCII blocks (code 219)
+        @param   textcolor The color to which printed text is reset when the
+                 image has been finished, as a string "<r>;<g>;<b>" with each
+                 letter representing the intensity of red, green, and blue from
+                 0 to 255
+        """
+        minny = min(array)
+        scale = 255.0 / (max(array) - minny)
+        for row in range(self._height):
+            for col in range(self._width):
+                pix = int(((array[row * self._width + (col)])-minny)*scale)
+                hashval = str(col)+","+str(row)
+                
+                if(not hashval in biggest):
+                    pix = 0
+                print(f"\033[38;2;{pix};{pix};{pix}m{pixel}", end='')
+            print(f"\033[38;2;{textcolor}m")
+
+    def ascii_image_og(self, array, pixel="██", textcolor="0;180;0",):
         """!
         @brief   Show low-resolution camera data as shaded pixels on a text
                  screen.
@@ -106,11 +151,11 @@ class MLX_Cam:
             for col in range(self._width):
                 pix = int((array[row * self._width + (self._width - col - 1)]
                            - minny) * scale)
-                hashval = str(col)+","+str(row)
-                if(not hashval in biggest):
+                if(row<0 or row>(self._height-6) or col <4 or col>(self._width-6)):
                     pix = 0
                 print(f"\033[38;2;{pix};{pix};{pix}m{pixel}", end='')
             print(f"\033[38;2;{textcolor}m")
+
 
 
     ## A "standard" set of characters of different densities to make ASCII art

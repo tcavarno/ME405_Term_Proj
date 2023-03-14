@@ -32,12 +32,21 @@ def cam_stream():
     # Create the camera object and set it up in default mode
     camera = MLX_Cam(i2c_bus)
     wait_for_start()
+    collect()
+    '''s = {}
+    for x in range(WIDTH):
+        for y in range(HEIGHT):
+            hashval = str(x)+","+str(y)
+            s[hashval] = True'''
 
     while True:
-        try:
-            # Get and image and see how long it takes to grab that image
-            biggest ={}
+        try:    
             image = camera.get_image()
+            camera.ascii_image_og(image)
+            # Get and image and see how long it takes to grab that image
+            """biggest ={}
+            image = camera.get_image()
+            collect()
             arr = array('l')
             minny = min(image)
             scale = 255.0 / (max(image) - minny)
@@ -45,15 +54,19 @@ def cam_stream():
                 arr.append(int((elm-minny)*scale))
             for x in range(WIDTH):
                 for y in range(HEIGHT):
-                    img_index = WIDTH*y+x
-                    blob = dfs(arr,x,y,scale,minny)
-                    print(f"length of blob f{len(blob)}")
+                    blob = dfs(arr,x,y)
                     if(blob != None and len(blob) > len(biggest)):
                         biggest = blob
-                    print()
-            print(f"size is {len(biggest)}")
-            camera.ascii_image(image,biggest)
-            collect()
+                    
+            camera.ascii_image_dfs(image,biggest)
+            avg = 0
+            for key in biggest:
+                avg += biggest[key].x
+            print(avg//len(biggest))
+            biggest = None
+            blob = None
+            collect()"""
+            
 
         except KeyboardInterrupt:
             break

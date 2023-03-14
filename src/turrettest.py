@@ -1,10 +1,23 @@
-
+import pyb
 import TurretDriver
+from gc import collect
 
 if __name__ == "__main__":
     turret = TurretDriver.TurretDriver()
-    #turret.yaw_to(90)
-    #turret.pitch()
-    turret.fake_cam()
+    in1 = pyb.Pin(pyb.Pin.board.PA5,pyb.Pin.OUT_PP)
+    in3 = pyb.Pin(pyb.Pin.board.PA6,pyb.Pin.OUT_PP)
+    in3.low()
+    in1.low()
+    #button press code
+    but = pyb.Pin(pyb.Pin.board.PC13,pyb.Pin.IN,pull=pyb.Pin.PULL_UP)
+    turret.yaw_to(180)
+    turret.pitch()
+    turret.cam()
+    turret.shoot()
+    while(but.value() == 1):
+       pass
+    print("starting")
+    but = None
+    collect()
     turret.run_action()
     
