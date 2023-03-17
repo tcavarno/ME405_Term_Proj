@@ -14,7 +14,7 @@ import MotorDriver
 import cotask
 import task_share
 import machine,neopixel
-from image_processing import WIDTH,HEIGHT,IMG_SIZE,dfs
+from image_processing import WIDTH,HEIGHT,IMG_SIZE,dfs,WIDTH_ST,WIDTH_END,HEIGHT_ST,HEIGHT_END,IMG_SIZE_N,WIDTH_N,HEIGHT_N
 from mlx_cam import MLX_Cam
 from array import array
 from gc import collect
@@ -76,7 +76,7 @@ def init_pitch():
     #Create encoder driver object
     encoder = EncoderReader.EncoderReader(ch1,ch2,tim8)
     #run the contoller
-    controller = ClosedLoopController.PController(.02,7000)
+    controller = ClosedLoopController.PController(.02,8000)
     return (encoder,motorB,controller)
 
 
@@ -131,17 +131,20 @@ def yaw_control(shares):
     (encoder,motorA,controller) = init_yaw(n)
     prev = [0]
     while True:
-        while(steady_state.get() == 4):
-            print("DONE")
+        cur =steady_state.get()
+        while(cur == 4):
             yield 0
+        if prev == 0 and cur == 1:
+            print("steady state")
         control_loop_one(encoder,motorA,controller,yaw,prev)
         if(abs(controller.target - encoder.ticks) < 300):
-            if(steady_state.get() != 2):
+            if(cur != 2):
                 steady_state.put(1)
             else:
                 steady_state.put(3)
         else:
             steady_state.put(0)
+        prev = cur
         yield 0
 
 def pitch_control():
@@ -169,6 +172,7 @@ def real_camera(shares):
     camera = MLX_Cam(i2c_bus)
     while(True):
         while steady_state.get() != 1 :
+            print("not ready for cam")
             yield 0 
         biggest = None
         image = camera.get_image()
@@ -176,31 +180,38 @@ def real_camera(shares):
         arr = array('l')
         minny = min(image)
         scale = 255.0 / (max(image) - minny)
-        for elm in image:
-            arr.append(int((elm-minny)*scale))
+        #print("clear")
+        #camera.ascii_image_og(image)
+        for row in range(HEIGHT_ST,HEIGHT_END):
+            for col in range(WIDTH_ST,WIDTH_END):
+                i = WIDTH*row+col
+                arr.append(int((image[i]-minny)*scale))
         image = None
         collect()
-        for x in range(WIDTH):
-            for y in range(HEIGHT):
+        for x in range(WIDTH_N):
+            for y in range(HEIGHT_N):
                 blob = dfs(arr,x,y)
                 if biggest == None:
                     biggest = blob
                 elif(blob != None and len(blob) > len(biggest)):
                     biggest = blob
-        if biggest != None:
+        if biggest != None and len(biggest) != 0:
             avg = 0
             for key in biggest:
                 avg += biggest[key].x
-            angle = 180 - 360*((math.pi*2)**-1)*math.atan((14.5-(avg//len(biggest)))/60)
-            print(f"angle{angle}")
+            angle = 180 - 360*((math.pi*2)**-1)*math.atan((10-(avg//len(biggest)))/40)
+            print(f"{avg//len(biggest)},angle{angle}")
             yaw.put(int(angle*DEGREES_TO_TICKS))
+            #camera.ascii_image_dfs(arr,biggest)
+            
+            print("\n")
         biggest = None
         blob = None
         collect()
         yield 0
 
 def shoot_fun(share):
-    in1 = pyb.Pin(pyb.Pin.board.PA5,pyb.Pin.OUT_PP)
+    in1 = pyb.Pin(pyb.Pin.board.PB3,pyb.Pin.OUT_PP)
     in3 = pyb.Pin(pyb.Pin.board.PA6,pyb.Pin.OUT_PP)
     in3.low()
     in1.high()
@@ -208,21 +219,24 @@ def shoot_fun(share):
     cur_time = start_time
     while(cur_time-start_time < 6000):
         cur_time = utime.ticks_ms()
+        print(cur_time-start_time)
         yield 0
     while(share.get() != 3):
         share.put(2)
         print("wainting to take the sh")
         yield 0
-    share.put(1)
+    share.put(1)  
 
     print("taking the shot")
     in3.high()
     pyb.delay(500)
     in3.low()
-    pyb.delay(500)
+    pyb.delay(750)
     in3.high()
     pyb.delay(500)
     in3.low()
+    in1.low()
+    print("DONE")
     while(True):
         share.put(4)
         yield 0 
@@ -243,7 +257,7 @@ class TurretDriver:
 
     def yaw_to(self,angle):
         if self.yaw_task == None:
-            self.yaw_task = cotask.Task(yaw_control, name="Yaw", priority=3, period=10,
+            self.yaw_task = cotask.Task(yaw_control, name="Yaw", priority=3, period=20,
                         profile=True, trace=False, shares=[self.yaw_angle,self.targ])
             self.yaw_angle.put(int(angle*DEGREES_TO_TICKS))           
             self.task_list.append(self.yaw_task)
@@ -251,7 +265,7 @@ class TurretDriver:
             print("Tried to yaw while current yaw in action") 
     def pitch(self):
         if self.pitch_task == None:
-            self.pitch_task = cotask.Task(pitch_control,name = "pitch",priority=3, period=10,
+            self.pitch_task = cotask.Task(pitch_control,name = "pitch",priority=3, period=50,
                         profile=True, trace=False, shares=None)
             self.task_list.append(self.pitch_task)
             
@@ -266,7 +280,7 @@ class TurretDriver:
         else:
             print("something dumb haopened")
     def shoot(self):
-        self.shoot = cotask.Task(shoot_fun,name = "shoot",priority=2, period=50,
+        self.shoot = cotask.Task(shoot_fun,name = "shoot",priority=2, period=100,
                         profile=True, trace=False, shares=self.targ)
         self.task_list.append(self.shoot)
 

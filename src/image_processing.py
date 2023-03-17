@@ -4,11 +4,13 @@ from gc import collect
 gaus_kern_5x5 = array('f',[0,.01,.01,.01,0,.01,.05,.11,.05,.01,.01,.11,.25,.11,.01,.01,.05,.11,.05,.01,0,.01,.01,.01,0])
 WIDTH = 32
 HEIGHT = 24
-WIDTH_ST = 4
+WIDTH_ST = 6
 WIDTH_END = 32-6
+WIDTH_N = WIDTH_END -WIDTH_ST
 HEIGHT_ST = 0
 HEIGHT_END = 24-8
-IMG_SIZE_N = (WIDTH_END-WIDTH_ST)*(HEIGHT_END-HEIGHT_ST)
+HEIGHT_N = HEIGHT_END-HEIGHT_ST
+IMG_SIZE_N = (WIDTH_N)*(HEIGHT_N)
 IMG_SIZE = WIDTH*HEIGHT
 THRESHHOLD = 175
 
@@ -93,14 +95,14 @@ def gaus_blur(img):
     return a
 
 def can_visit(img,x,y):
-    img_index = WIDTH*y+x
-    if img_index < IMG_SIZE:
+    img_index = (WIDTH_N)*y+x
+    if img_index < IMG_SIZE_N:
         value = img[img_index] != -1
         threshval = img[img_index] >= THRESHHOLD
     else:
         value = False
         threshval = False
-    ret =  (threshval and x >= 0 and y >= 0 and x < WIDTH and y < HEIGHT and value)
+    ret =  (threshval and x >= WIDTH_ST and y >= HEIGHT_ST and x < WIDTH_END and y < WIDTH_END and value)
     return ret
     
 
@@ -113,9 +115,9 @@ def dfs(img,x,y):
     while len(stack) != 0:
         current = stack.pop()
         hashval = str(current.x)+","+str(current.y)
-        img_index = WIDTH*current.y+current.x
+        img_index = (WIDTH_N)*current.y+current.x
         if(can_visit(img,current.x,current.y)):
-            print(len(current_blob))
+            #print(len(current_blob))
             if(len(current_blob) >=50):
                 return current_blob 
             current_blob[hashval] = img_pnt(current.x,current.y)
@@ -134,7 +136,6 @@ def dfs(img,x,y):
             pt = img_pnt(current.x,current.y+1)
             if can_visit(img,pt.x,pt.y):
                 stack.append(pt)
-
         img[img_index] = -1
     return current_blob
 

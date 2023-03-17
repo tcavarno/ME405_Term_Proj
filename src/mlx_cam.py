@@ -29,7 +29,7 @@ from machine import Pin, I2C
 from mlx90640 import MLX90640
 from mlx90640.calibration import NUM_ROWS, NUM_COLS, IMAGE_SIZE, TEMP_K
 from mlx90640.image import ChessPattern
-
+from image_processing import WIDTH_N, HEIGHT_N
 
 class MLX_Cam:
     """!
@@ -101,15 +101,14 @@ class MLX_Cam:
                  letter representing the intensity of red, green, and blue from
                  0 to 255
         """
-        minny = min(array)
-        scale = 255.0 / (max(array) - minny)
-        for row in range(self._height):
-            for col in range(self._width):
-                pix = int(((array[row * self._width + (col)])-minny)*scale)
+       
+        for row in range(HEIGHT_N):
+            for col in range(WIDTH_N,-1,-1):
                 hashval = str(col)+","+str(row)
-                
                 if(not hashval in biggest):
                     pix = 0
+                else:
+                    pix = 255
                 print(f"\033[38;2;{pix};{pix};{pix}m{pixel}", end='')
             print(f"\033[38;2;{textcolor}m")
 
@@ -149,9 +148,11 @@ class MLX_Cam:
         scale = 255.0 / (max(array) - minny)
         for row in range(self._height):
             for col in range(self._width):
-                pix = int((array[row * self._width + (self._width - col - 1)]
+                pix = int((array[row * self._width + col]
                            - minny) * scale)
                 if(row<0 or row>(self._height-6) or col <4 or col>(self._width-6)):
+                    pix = 0
+                if pix <175:
                     pix = 0
                 print(f"\033[38;2;{pix};{pix};{pix}m{pixel}", end='')
             print(f"\033[38;2;{textcolor}m")
@@ -174,7 +175,7 @@ class MLX_Cam:
         offset = -min(array)
         for row in range(self._height):
             line = ""
-            for col in range(self._width):
+            for col in range(self._width,-1,-1):
                 pix = int((array[row * self._width + (self._width - col - 1)]
                            + offset) * scale)
                 try:
