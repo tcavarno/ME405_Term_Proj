@@ -28,6 +28,11 @@ motion and a picture of the fully assembled system.
 The code in this repository was writted to interface with two Ametek/Pittman PG6712A077-R3 6665 motors. The dart gun that we selected was a Snowcinda Automatic Machine Gun Toy Gun
 purchased from Amazon. 
 
+## Circuit Schematics 
+
+![Figure 3. Wiring Diagram](ME405_WiringDiagram.jpeg)
+
+**Figure 3.** Wiring diagram of all of the connections to the STM32 and various motors and motor controllers necesaary for controlling the gun. 
 
 ## Software Design
 
