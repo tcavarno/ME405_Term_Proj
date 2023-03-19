@@ -90,13 +90,13 @@ $(document).ready(function(){initNavTree('TurretDriver_8py.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>This file contains a class to a Turreted Nerf gun.  
+<p>This file contains a class to a Turreted Nerf gun along with functions for implementing.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTurretDriver_1_1TurretDriver.html">TurretDriver.TurretDriver</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class implments X, Y Axis Control an ME405 kit.  <a href="classTurretDriver_1_1TurretDriver.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is an object allowing tasksharing implementation of a two axist turreted nerf gun.  <a href="classTurretDriver_1_1TurretDriver.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -104,12 +104,28 @@ Functions</h2></td></tr>
 <tr class="memitem:a44ef256c89c301aff545fae5ec5b024f"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TurretDriver_8py.html#a44ef256c89c301aff545fae5ec5b024f">TurretDriver.init_yaw</a> (angle)</td></tr>
 <tr class="memdesc:a44ef256c89c301aff545fae5ec5b024f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function initializes a motor driver on pins B4,B5, and PA10 and initializes an encoder on pins C6 and C7.  <a href="TurretDriver_8py.html#a44ef256c89c301aff545fae5ec5b024f">More...</a><br /></td></tr>
 <tr class="separator:a44ef256c89c301aff545fae5ec5b024f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85c2f25e5c8e170cc7775ff8c32200a1"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TurretDriver_8py.html#a85c2f25e5c8e170cc7775ff8c32200a1">TurretDriver.init_pitch</a> ()</td></tr>
+<tr class="memdesc:a85c2f25e5c8e170cc7775ff8c32200a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function initializes a motor driver on pins PA0,PA1, and PC1 and initializes an encoder on pins PB6 and PB7.  <a href="TurretDriver_8py.html#a85c2f25e5c8e170cc7775ff8c32200a1">More...</a><br /></td></tr>
+<tr class="separator:a85c2f25e5c8e170cc7775ff8c32200a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a491389435b49de45cee0ac2f6cd78d89"><td class="memItemLeft" align="right" valign="top"><a id="a491389435b49de45cee0ac2f6cd78d89"></a>
 def&#160;</td><td class="memItemRight" valign="bottom"><b>TurretDriver.control_loop_one</b></td></tr>
 <tr class="separator:a491389435b49de45cee0ac2f6cd78d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6772bc1e708258b2423539ccf440cbdf"><td class="memItemLeft" align="right" valign="top"><a id="a6772bc1e708258b2423539ccf440cbdf"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>TurretDriver.yaw_control</b></td></tr>
-<tr class="separator:a6772bc1e708258b2423539ccf440cbdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaaae589a6e14202cfb7cc1c87d54af0"><td class="memItemLeft" align="right" valign="top"><a id="adaaae589a6e14202cfb7cc1c87d54af0"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><b>TurretDriver.control_loop_two</b></td></tr>
+<tr class="separator:adaaae589a6e14202cfb7cc1c87d54af0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae20eca9113d263ced955666bc36babfb"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TurretDriver_8py.html#ae20eca9113d263ced955666bc36babfb">TurretDriver.yaw_control</a> (shares)</td></tr>
+<tr class="memdesc:ae20eca9113d263ced955666bc36babfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task which initializes encoder, motor, and controller objects, and then feeds those to the close loop function.for yaw control.  <a href="TurretDriver_8py.html#ae20eca9113d263ced955666bc36babfb">More...</a><br /></td></tr>
+<tr class="separator:ae20eca9113d263ced955666bc36babfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93104c89df843cb923bad0dd6715b48f"><td class="memItemLeft" align="right" valign="top"><a id="a93104c89df843cb923bad0dd6715b48f"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TurretDriver_8py.html#a93104c89df843cb923bad0dd6715b48f">TurretDriver.pitch_control</a> ()</td></tr>
+<tr class="memdesc:a93104c89df843cb923bad0dd6715b48f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task which initializes encoder, motor, and controller objects, and then feeds those to the close loop function for pitch control. <br /></td></tr>
+<tr class="separator:a93104c89df843cb923bad0dd6715b48f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9ec9e74340658e7d95613ea08f2c1da"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TurretDriver_8py.html#ab9ec9e74340658e7d95613ea08f2c1da">TurretDriver.real_camera</a> (shares)</td></tr>
+<tr class="memdesc:ab9ec9e74340658e7d95613ea08f2c1da"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function for performing computation on an image and determining a target angle to shoot at.  <a href="TurretDriver_8py.html#ab9ec9e74340658e7d95613ea08f2c1da">More...</a><br /></td></tr>
+<tr class="separator:ab9ec9e74340658e7d95613ea08f2c1da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a186a255af9c3d47266b988d0389ae37a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TurretDriver_8py.html#a186a255af9c3d47266b988d0389ae37a">TurretDriver.shoot_fun</a> (share)</td></tr>
+<tr class="memdesc:a186a255af9c3d47266b988d0389ae37a"><td class="mdescLeft">&#160;</td><td class="mdescRight">function for determining when to shoot and turn the correct motors on  <a href="TurretDriver_8py.html#a186a255af9c3d47266b988d0389ae37a">More...</a><br /></td></tr>
+<tr class="separator:a186a255af9c3d47266b988d0389ae37a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -118,10 +134,30 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>TurretDriver.DEGREES
 <tr class="separator:ab0de26c477ac54db1705c061ac68c242"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This file contains a class to a Turreted Nerf gun. </p>
+<div class="textblock"><p>This file contains a class to a Turreted Nerf gun along with functions for implementing. </p>
 <dl class="section author"><dt>Author</dt><dd>Miloh Padgett, Tristan Cavarno, Jon Abraham </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>30-Jan-2023 Original File </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>1-Mar-2023 Original File </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="file_a85c2f25e5c8e170cc7775ff8c32200a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a85c2f25e5c8e170cc7775ff8c32200a1">&#9670;&nbsp;</a></span>init_pitch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def TurretDriver.init_pitch </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function initializes a motor driver on pins PA0,PA1, and PC1 and initializes an encoder on pins PB6 and PB7. </p>
+<dl class="section return"><dt>Returns</dt><dd>intialized encoder motor and controller objects </dd></dl>
+
+</div>
+</div>
 <a id="file_a44ef256c89c301aff545fae5ec5b024f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#file_a44ef256c89c301aff545fae5ec5b024f">&#9670;&nbsp;</a></span>init_yaw()</h2>
 
@@ -141,11 +177,89 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>TurretDriver.DEGREES
 <p>This function initializes a motor driver on pins B4,B5, and PA10 and initializes an encoder on pins C6 and C7. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">NA</td><td></td></tr>
+    <tr><td class="paramname">angle</td><td>this is the target angle to go to </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>intialized encoder motor and controller objects </dd></dl>
+
+</div>
+</div>
+<a id="file_ab9ec9e74340658e7d95613ea08f2c1da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_ab9ec9e74340658e7d95613ea08f2c1da">&#9670;&nbsp;</a></span>real_camera()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def TurretDriver.real_camera </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>shares</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A function for performing computation on an image and determining a target angle to shoot at. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">shares</td><td>a tuple of shares to set target yaw angles and state to determine when to run the camera code </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="file_a186a255af9c3d47266b988d0389ae37a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a186a255af9c3d47266b988d0389ae37a">&#9670;&nbsp;</a></span>shoot_fun()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def TurretDriver.shoot_fun </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>share</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>function for determining when to shoot and turn the correct motors on </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">share</td><td>the current state of the turret </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="file_ae20eca9113d263ced955666bc36babfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_ae20eca9113d263ced955666bc36babfb">&#9670;&nbsp;</a></span>yaw_control()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def TurretDriver.yaw_control </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>shares</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Task which initializes encoder, motor, and controller objects, and then feeds those to the close loop function.for yaw control. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">shares</td><td>A list holding the share and queue used by this task </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

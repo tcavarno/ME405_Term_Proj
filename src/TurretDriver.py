@@ -1,9 +1,10 @@
 """!
 @file TurretDriver.py
-This file contains a class to a Turreted Nerf gun
+This file contains a class to a Turreted Nerf gun along
+with functions for implementing 
 
 @author Miloh Padgett, Tristan Cavarno, Jon Abraham
-@date 30-Jan-2023 Original File
+@date 1-Mar-2023 Original File
 """
 
 import pyb 
@@ -27,7 +28,7 @@ def init_yaw(angle):
     '''!
     This function initializes a motor driver on pins B4,B5, and PA10
     and initializes an encoder on pins C6 and C7. 
-    @param NA
+    @param angle this is the target angle to go to
     @returns intialized encoder motor and controller objects
     '''
     #Set up pins and timer channel.
@@ -54,9 +55,8 @@ def init_yaw(angle):
 
 def init_pitch():
     '''!
-    This function initializes a motor driver on pins B4,B5, and PA10
-    and initializes an encoder on pins C6 and C7. 
-    @param NA
+    This function initializes a motor driver on pins PA0,PA1, and PC1
+    and initializes an encoder on pins PB6 and PB7. 
     @returns intialized encoder motor and controller objects
     '''
      #Set up pins and timer channel.
@@ -83,13 +83,14 @@ def init_pitch():
 def control_loop_one(encoder: EncoderReader.EncoderReader,
                     motorA: MotorDriver.MotorDriver,
                     controller: ClosedLoopController.PController,
-                    yawAngle: task_share.Share,
-                    prev):
+                    yawAngle: task_share.Share):
     """!
-    This function contains a motor copintrol loop which reads encoder ticks,
-    claculates the desired duty cycle, and runs the motor at that duty cycle.
-    @param encoder motor and controller class objects
-    @returns NAt
+    This function contains a motor control loop which reads encoder ticks,
+    calculates the desired duty cycle, and runs the motor at that duty cycle.
+    @param encoder an encoder for tracking distance traveled in the yaw direction
+    @param motorA a motor driver for controlling yaw
+    @param controller a p controller for motor control in the yaw direction
+    @param yawAngle a share containing the target angle from the camera
     """
     controller.target = yawAngle.get()
     #Read encoder value
@@ -105,10 +106,11 @@ def control_loop_two(encoder: EncoderReader.EncoderReader,
                     motorA: MotorDriver.MotorDriver,
                     controller: ClosedLoopController.PController):
     """!
-    This function contains a motor copintrol loop which reads encoder ticks,
-    claculates the desired duty cycle, and runs the motor at that duty cycle.
-    @param encoder motor and controller class objects
-    @returns NAt
+    This function contains a motor contrl loop which reads encoder ticks,
+    claculates the desired duty cycle for pitch control
+    @param encoder an encoder for tracking distance traveled in the yaw direction
+    @param motorA a motor driver for controlling yaw
+    @param controller a p controller for motor control in the yaw direction
     """
     #Read encoder value
     encoder.read()
@@ -122,7 +124,7 @@ def control_loop_two(encoder: EncoderReader.EncoderReader,
 def yaw_control(shares):
     """!
     Task which initializes encoder, motor, and controller objects,
-    and then feeds those to the close loop function.
+    and then feeds those to the close loop function.for yaw control
     @param shares A list holding the share and queue used by this task
     """
     # Get references to the share and queue which have been passed to this task
@@ -150,8 +152,7 @@ def yaw_control(shares):
 def pitch_control():
     """!
     Task which initializes encoder, motor, and controller objects,
-    and then feeds those to the close loop function.
-    @param shares A list holding the share and queue used by this task
+    and then feeds those to the close loop function for pitch control.
     """
     # Get references to the share and queue which have been passed to this task
     (encoderB,motorB,controller) = init_pitch()
@@ -161,33 +162,41 @@ def pitch_control():
         yield 0
 
 def real_camera(shares):
+    """!
+    A function for performing computation on an
+    image and determining a target angle to shoot at
+    @param shares  a tuple of shares to set target yaw angles and state to determine when to run the camera code
+    """
     (yaw,steady_state) = shares
-    i2c_bus = machine.I2C(1)
-    scanhex = [f"0x{addr:X}" for addr in i2c_bus.scan()]
 
+    #start the i2c connection
+    i2c_bus = machine.I2C(1)
     print("MXL90640 Easy(ish) Driver Test")
 
 
     # Create the camera object and set it up in default mode
     camera = MLX_Cam(i2c_bus)
     while(True):
+        #if the gun isn't at a stable state dont do anything
         while steady_state.get() != 1 :
             print("not ready for cam")
             yield 0 
+        #start on a new frame
         biggest = None
         image = camera.get_image()
         collect()
         arr = array('l')
+        #get a scale for collapsing img data down to 0-255
         minny = min(image)
         scale = 255.0 / (max(image) - minny)
-        #print("clear")
-        #camera.ascii_image_og(image)
+        #create a editable array to do computation on
         for row in range(HEIGHT_ST,HEIGHT_END):
             for col in range(WIDTH_ST,WIDTH_END):
                 i = WIDTH*row+col
                 arr.append(int((image[i]-minny)*scale))
         image = None
         collect()
+        #find the largest blob above 175 in the image
         for x in range(WIDTH_N):
             for y in range(HEIGHT_N):
                 blob = dfs(arr,x,y)
@@ -195,6 +204,8 @@ def real_camera(shares):
                     biggest = blob
                 elif(blob != None and len(blob) > len(biggest)):
                     biggest = blob
+        #if we found the blob then get the avg x distance and give a new yaw angle
+        #to the yaw controller
         if biggest != None and len(biggest) != 0:
             avg = 0
             for key in biggest:
@@ -211,22 +222,33 @@ def real_camera(shares):
         yield 0
 
 def shoot_fun(share):
+    '''!
+    function for determining when to shoot and turn the correct motors on
+    @param share the current state of the turret
+    '''
+    #init the needed gun pins
     in1 = pyb.Pin(pyb.Pin.board.PB3,pyb.Pin.OUT_PP)
     in3 = pyb.Pin(pyb.Pin.board.PA6,pyb.Pin.OUT_PP)
+    #turn the tigger off and the flywheels on
     in3.low()
     in1.high()
+    #capture the start time
     start_time = utime.ticks_ms()
     cur_time = start_time
+
+    #wait for 6 seconds
     while(cur_time-start_time < 6000):
         cur_time = utime.ticks_ms()
         print(cur_time-start_time)
         yield 0
+    #wait for the turret to reach stread state and turn off
+    #additional camera images
     while(share.get() != 3):
         share.put(2)
         print("wainting to take the sh")
         yield 0
     share.put(1)  
-
+    #shoot the gun!
     print("taking the shot")
     in3.high()
     pyb.delay(500)
@@ -237,15 +259,20 @@ def shoot_fun(share):
     in3.low()
     in1.low()
     print("DONE")
+    #stop doing anything selse.
     while(True):
         share.put(4)
         yield 0 
 
 class TurretDriver:
     """! 
-    This class implments X, Y Axis Control an ME405 kit. 
+    This class is an object allowing tasksharing implementation
+    of a two axist turreted nerf gun
     """
     def __init__(self):
+        """!
+        init all the needed variable for the future like tasklists and shares
+        """
         self.task_list = cotask.TaskList()
         self.yaw_task = None
         self.pitch_task = None
@@ -256,6 +283,10 @@ class TurretDriver:
 
 
     def yaw_to(self,angle):
+        """!
+        add the yaw task to the scheduler
+        @param a target starting angle.
+        """
         if self.yaw_task == None:
             self.yaw_task = cotask.Task(yaw_control, name="Yaw", priority=3, period=20,
                         profile=True, trace=False, shares=[self.yaw_angle,self.targ])
@@ -264,6 +295,9 @@ class TurretDriver:
         else:
             print("Tried to yaw while current yaw in action") 
     def pitch(self):
+        """!
+        add a pitch task to the scheduler defaults to a set pitch height
+        """
         if self.pitch_task == None:
             self.pitch_task = cotask.Task(pitch_control,name = "pitch",priority=3, period=50,
                         profile=True, trace=False, shares=None)
@@ -273,6 +307,9 @@ class TurretDriver:
             print("Tried to yaw while current yaw in action")    
 
     def cam(self):
+        """!
+        Add the camera processing task to the scheduler
+        """
         if self.fake_task == None:
             self.fake_task = cotask.Task(real_camera,name = "real",priority=1, period=250,
                         profile=True, trace=False, shares=[self.yaw_angle,self.targ])
@@ -280,11 +317,19 @@ class TurretDriver:
         else:
             print("something dumb haopened")
     def shoot(self):
+        """!
+        Add the shoot task to the scheduler
+        """
+
         self.shoot = cotask.Task(shoot_fun,name = "shoot",priority=2, period=100,
                         profile=True, trace=False, shares=self.targ)
         self.task_list.append(self.shoot)
 
     def run_action(self):
+        """!
+        Infinitly run the task scheduler until a keyboard
+        interrupt is triggered.
+        """
         while True:
             try:
                 self.task_list.pri_sched()

@@ -90,19 +90,33 @@ $(document).ready(function(){initNavTree('classTurretDriver_1_1TurretDriver.html
 </div><!--header-->
 <div class="contents">
 
-<p>This class implments X, Y Axis Control an ME405 kit.  
+<p>This class is an object allowing tasksharing implementation of a two axist turreted nerf gun.  
  <a href="classTurretDriver_1_1TurretDriver.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:afc66e39ab34a6f97833c19d37c9d7954"><td class="memItemLeft" align="right" valign="top"><a id="afc66e39ab34a6f97833c19d37c9d7954"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>__init__</b> (self)</td></tr>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTurretDriver_1_1TurretDriver.html#afc66e39ab34a6f97833c19d37c9d7954">__init__</a> (self)</td></tr>
+<tr class="memdesc:afc66e39ab34a6f97833c19d37c9d7954"><td class="mdescLeft">&#160;</td><td class="mdescRight">init all the needed variable for the future like tasklists and shares <br /></td></tr>
 <tr class="separator:afc66e39ab34a6f97833c19d37c9d7954"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6ebea510d4782598dc280c7843ec665"><td class="memItemLeft" align="right" valign="top"><a id="aa6ebea510d4782598dc280c7843ec665"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>yaw_to</b> (self, angle)</td></tr>
+<tr class="memitem:aa6ebea510d4782598dc280c7843ec665"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTurretDriver_1_1TurretDriver.html#aa6ebea510d4782598dc280c7843ec665">yaw_to</a> (self, angle)</td></tr>
+<tr class="memdesc:aa6ebea510d4782598dc280c7843ec665"><td class="mdescLeft">&#160;</td><td class="mdescRight">add the yaw task to the scheduler  <a href="#aa6ebea510d4782598dc280c7843ec665">More...</a><br /></td></tr>
 <tr class="separator:aa6ebea510d4782598dc280c7843ec665"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a153f163184c8bce995f07009f5b44f8c"><td class="memItemLeft" align="right" valign="top"><a id="a153f163184c8bce995f07009f5b44f8c"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTurretDriver_1_1TurretDriver.html#a153f163184c8bce995f07009f5b44f8c">pitch</a> (self)</td></tr>
+<tr class="memdesc:a153f163184c8bce995f07009f5b44f8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a pitch task to the scheduler defaults to a set pitch height <br /></td></tr>
+<tr class="separator:a153f163184c8bce995f07009f5b44f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e0af7a3829ff91a40e4d1d2a2ccd39a"><td class="memItemLeft" align="right" valign="top"><a id="a3e0af7a3829ff91a40e4d1d2a2ccd39a"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTurretDriver_1_1TurretDriver.html#a3e0af7a3829ff91a40e4d1d2a2ccd39a">cam</a> (self)</td></tr>
+<tr class="memdesc:a3e0af7a3829ff91a40e4d1d2a2ccd39a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add the camera processing task to the scheduler. <br /></td></tr>
+<tr class="separator:a3e0af7a3829ff91a40e4d1d2a2ccd39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa37a036dddefd680faf3db85c2e7f29e"><td class="memItemLeft" align="right" valign="top"><a id="aa37a036dddefd680faf3db85c2e7f29e"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTurretDriver_1_1TurretDriver.html#aa37a036dddefd680faf3db85c2e7f29e">shoot</a> (self)</td></tr>
+<tr class="memdesc:aa37a036dddefd680faf3db85c2e7f29e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add the shoot task to the scheduler. <br /></td></tr>
+<tr class="separator:aa37a036dddefd680faf3db85c2e7f29e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26d4b442ebf3a0d05a6992282acbdeff"><td class="memItemLeft" align="right" valign="top"><a id="a26d4b442ebf3a0d05a6992282acbdeff"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>run_action</b> (self)</td></tr>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTurretDriver_1_1TurretDriver.html#a26d4b442ebf3a0d05a6992282acbdeff">run_action</a> (self)</td></tr>
+<tr class="memdesc:a26d4b442ebf3a0d05a6992282acbdeff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Infinitly run the task scheduler until a keyboard interrupt is triggered. <br /></td></tr>
 <tr class="separator:a26d4b442ebf3a0d05a6992282acbdeff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -113,13 +127,62 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a23ffb296a7741e2fadb44e02e1d96cab"><td class="memItemLeft" align="right" valign="top"><a id="a23ffb296a7741e2fadb44e02e1d96cab"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>yaw_task</b></td></tr>
 <tr class="separator:a23ffb296a7741e2fadb44e02e1d96cab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13d948494863a7f81ab1799e5b1e13f7"><td class="memItemLeft" align="right" valign="top"><a id="a13d948494863a7f81ab1799e5b1e13f7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>pitch_task</b></td></tr>
+<tr class="separator:a13d948494863a7f81ab1799e5b1e13f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05af5d3aa7624577f2fe2d87928686ad"><td class="memItemLeft" align="right" valign="top"><a id="a05af5d3aa7624577f2fe2d87928686ad"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>yaw_angle</b></td></tr>
 <tr class="separator:a05af5d3aa7624577f2fe2d87928686ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a338c1e37cca13997366b3af82f0aeef6"><td class="memItemLeft" align="right" valign="top"><a id="a338c1e37cca13997366b3af82f0aeef6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>targ</b></td></tr>
+<tr class="separator:a338c1e37cca13997366b3af82f0aeef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5960e8b9f44fc738b4674e85d3298cd"><td class="memItemLeft" align="right" valign="top"><a id="ae5960e8b9f44fc738b4674e85d3298cd"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>fake_task</b></td></tr>
+<tr class="separator:ae5960e8b9f44fc738b4674e85d3298cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f963de23b62646602383814beadce72"><td class="memItemLeft" align="right" valign="top"><a id="a5f963de23b62646602383814beadce72"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>shoot</b></td></tr>
+<tr class="separator:a5f963de23b62646602383814beadce72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class implments X, Y Axis Control an ME405 kit. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<div class="textblock"><p>This class is an object allowing tasksharing implementation of a two axist turreted nerf gun. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa6ebea510d4782598dc280c7843ec665"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6ebea510d4782598dc280c7843ec665">&#9670;&nbsp;</a></span>yaw_to()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def TurretDriver.TurretDriver.yaw_to </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>angle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>add the yaw task to the scheduler </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>target starting angle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/<a class="el" href="TurretDriver_8py.html">TurretDriver.py</a></li>
 </ul>
 </div><!-- contents -->

@@ -10,15 +10,31 @@ from array import array
 from gc import collect
 from image_processing import HEIGHT,WIDTH,IMG_SIZE,dfs
 import sys
+"""!
+@file camtest.py
+Test working with the camera outside the main control code 
+
+@author Miloh Padgett, Tristan Cavarno, Jon Abraham
+@date 5-Mar-2023 Original File
+"""
+
+
 def wait_for_start():
     """!
-    Polls user to get input Kp value.
+    Recursivly waits for the user to type start
     """
-    inp = input("Please input a value Kp (float): ")
+    inp = input("Please input start to continue: ")
     if( inp.strip() != "start"):
         wait_for_start()
 
 def cam_stream():
+    """!
+    Open an i2c camera device and either
+    1) Serve frames via print
+    2) Test the dfs camera alrorithm and serve those
+    frames for validation
+
+    """
     
     i2c_bus = I2C(1)
 
@@ -33,17 +49,13 @@ def cam_stream():
     camera = MLX_Cam(i2c_bus)
     wait_for_start()
     collect()
-    '''s = {}
-    for x in range(WIDTH):
-        for y in range(HEIGHT):
-            hashval = str(x)+","+str(y)
-            s[hashval] = True'''
 
     while True:
         try:    
+            #Get a single frame and print it
             image = camera.get_image()
             camera.ascii_image_og(image)
-            # Get and image and see how long it takes to grab that image
+            # Get and image and preform a dfs on blobs in the image.
             """biggest ={}
             image = camera.get_image()
             collect()

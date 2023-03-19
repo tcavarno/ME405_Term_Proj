@@ -98,9 +98,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a95105abd546aee6585eb199555c730ba"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlx__cam_1_1MLX__Cam.html#a95105abd546aee6585eb199555c730ba">__init__</a> (self, i2c, address=0x33, pattern=ChessPattern, width=NUM_COLS, height=NUM_ROWS)</td></tr>
 <tr class="memdesc:a95105abd546aee6585eb199555c730ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up an MLX90640 camera.  <a href="#a95105abd546aee6585eb199555c730ba">More...</a><br /></td></tr>
 <tr class="separator:a95105abd546aee6585eb199555c730ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81414599e49572ccef6b84bf79720c0b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlx__cam_1_1MLX__Cam.html#a81414599e49572ccef6b84bf79720c0b">ascii_image</a> (self, array, pixel=&quot;██&quot;, textcolor=&quot;0;180;0&quot;)</td></tr>
-<tr class="memdesc:a81414599e49572ccef6b84bf79720c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show low-resolution camera data as shaded pixels on a text screen.  <a href="#a81414599e49572ccef6b84bf79720c0b">More...</a><br /></td></tr>
-<tr class="separator:a81414599e49572ccef6b84bf79720c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6c747221aa4c5fb4cecc608ccd9fa17"><td class="memItemLeft" align="right" valign="top"><a id="ae6c747221aa4c5fb4cecc608ccd9fa17"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><b>ascii_image_dfs</b></td></tr>
+<tr class="separator:ae6c747221aa4c5fb4cecc608ccd9fa17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacfc8c466adf908bcda4262155000b12"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlx__cam_1_1MLX__Cam.html#aacfc8c466adf908bcda4262155000b12">ascii_image_og</a> (self, array, pixel=&quot;██&quot;, textcolor=&quot;0;180;0&quot;)</td></tr>
+<tr class="memdesc:aacfc8c466adf908bcda4262155000b12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show low-resolution camera data as shaded pixels on a text screen.  <a href="#aacfc8c466adf908bcda4262155000b12">More...</a><br /></td></tr>
+<tr class="separator:aacfc8c466adf908bcda4262155000b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cbed5a475d4f37117356caab5e3b6c8"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlx__cam_1_1MLX__Cam.html#a2cbed5a475d4f37117356caab5e3b6c8">ascii_art</a> (self, array)</td></tr>
 <tr class="memdesc:a2cbed5a475d4f37117356caab5e3b6c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show a data array from the IR image as ASCII art.  <a href="#a2cbed5a475d4f37117356caab5e3b6c8">More...</a><br /></td></tr>
 <tr class="separator:a2cbed5a475d4f37117356caab5e3b6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,14 +225,14 @@ string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 
 </div>
 </div>
-<a id="a81414599e49572ccef6b84bf79720c0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81414599e49572ccef6b84bf79720c0b">&#9670;&nbsp;</a></span>ascii_image()</h2>
+<a id="aacfc8c466adf908bcda4262155000b12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacfc8c466adf908bcda4262155000b12">&#9670;&nbsp;</a></span>ascii_image_og()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">def mlx_cam.MLX_Cam.ascii_image </td>
+          <td class="memname">def mlx_cam.MLX_Cam.ascii_image_og </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>self</em>, </td>
@@ -335,7 +338,7 @@ string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 </div><div class="memdoc">
 
 <p>Get one image from a MLX90640 camera. </p>
-<p>Grab one image from the given camera and return it. Both subframes (the odd checkerboard portions of the image) are grabbed and combined. This assumes that the camera is in the ChessPattern (default) mode as it probably should be. </p><dl class="section return"><dt>Returns</dt><dd>A reference to the image object we've just filled with data </dd></dl>
+<p>Grab one image from the given camera and return it. Both subframes (the odd checkerboard portions of the image) are grabbed and combined (maybe; this is the raw version, so the combination is sketchy and not fully tested). It is assumed that the camera is in the ChessPattern (default) mode as it probably should be. </p><dl class="section return"><dt>Returns</dt><dd>A reference to the image object we've just filled with data </dd></dl>
 
 </div>
 </div>

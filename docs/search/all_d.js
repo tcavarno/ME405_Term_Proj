@@ -8,5 +8,7 @@ var searchData=
   ['set_5fsetpoint',['set_setpoint',['../classClosedLoopController_1_1PController.html#af86623421995c818ac9bed14b03d37e0',1,'ClosedLoopController::PController']]],
   ['share',['Share',['../classtask__share_1_1Share.html',1,'task_share']]],
   ['share_5flist',['share_list',['../task__share_8py.html#a75818e5b662453e3723d0f234c85e519',1,'task_share']]],
+  ['shoot',['shoot',['../classTurretDriver_1_1TurretDriver.html#aa37a036dddefd680faf3db85c2e7f29e',1,'TurretDriver::TurretDriver']]],
+  ['shoot_5ffun',['shoot_fun',['../TurretDriver_8py.html#a186a255af9c3d47266b988d0389ae37a',1,'TurretDriver']]],
   ['show_5fall',['show_all',['../task__share_8py.html#a130cad0bc96d3138e77344ea85586b7c',1,'task_share']]]
 ];

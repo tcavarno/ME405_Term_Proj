@@ -12,6 +12,9 @@ var annotated_dup =
     [ "EncoderReader", null, [
       [ "EncoderReader", "classEncoderReader_1_1EncoderReader.html", "classEncoderReader_1_1EncoderReader" ]
     ] ],
+    [ "image_processing", null, [
+      [ "img_pnt", "classimage__processing_1_1img__pnt.html", "classimage__processing_1_1img__pnt" ]
+    ] ],
     [ "mlx_cam", null, [
       [ "MLX_Cam", "classmlx__cam_1_1MLX__Cam.html", "classmlx__cam_1_1MLX__Cam" ]
     ] ],
