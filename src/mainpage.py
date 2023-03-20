@@ -44,10 +44,12 @@
     @subsection Task_Diagram Task_Diagram
     \image html Task_Diagram_Updated.png
     @subsection Pitch_State_Diagram Pitch_State_Diagram 
-    \image html Pitch_Diagram.drawio.png
+    \image html Pitch.png
     @subsection Yaw_State_Diagram Yaw_State_Diagram
-    \image html "Yaw_Diagram.drawio (copy).png"
+    \image html Yaw.png
     @subsection Shooting_State_Diagram
-    \image html Camera.drawio.png
+    \image html Shoot.png
+    @subsection Cam_State_Diagram
+    \image html cam.png
     
 '''
