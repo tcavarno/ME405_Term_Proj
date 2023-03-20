@@ -61,3 +61,5 @@ Here is a list of some lessons that we have learned while working on this projec
 - Properly tensioned timing belts reduce backlash and would allow for more accurate and reliable positional control.
 - A more universal hinge design (i.e. mounting the bearings on a block of wood or thinner triangular mounts) allows for faster iteration/saving material.
 - Make a separate control box assembly to simplify the construction of the gun base and reduce clearance issues 
+- More lightweight camera processing code would allow for faster tracking an target picking.
+- Documenting all GPIO pins that are tied timers and channels being used by various peripherals as you go is helpful and avoids tricky bugs.
