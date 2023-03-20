@@ -87,6 +87,36 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="Software_Design"></a>
 Software_Design</h1>
+<p>This project is made up of several files Hardware Interface &amp; Controllers: <a class="el" href="mlx__cam_8py.html" title="RAW VERSION This version uses a stripped down MLX90640 driver which produces only raw data...">mlx_cam.py</a>, <a class="el" href="MotorDriver_8py.html" title="This file contains code which uses PWM output with varying duty cycle to control a DC motor...">MotorDriver.py</a>, <a class="el" href="EncoderReader_8py.html" title="This file contains code which uses uses timer channels for encoder measurements. ">EncoderReader.py</a>, <a class="el" href="ClosedLoopController_8py.html" title="This file contains a class to implement a Closed Loop P Controller. ">ClosedLoopController.py</a> Control Code: <a class="el" href="task__share_8py.html" title="This file contains classes which allow tasks to share data without the risk of data corruption by int...">task_share.py</a>, <a class="el" href="cotask_8py.html" title="This file contains classes to run cooperatively scheduled tasks in a multitasking system...">cotask.py</a>, <a class="el" href="TurretDriver_8py.html" title="This file contains a class to a Turreted Nerf gun along with functions for implementing. ">TurretDriver.py</a>, <a class="el" href="turrettest_8py.html" title="file the contains the code to init and run the turret for a match ">turrettest.py</a> Tests: <a class="el" href="camtest_8py.html" title="Test working with the camera outside the main control code. ">camtest.py</a>, <a class="el" href="camera__viewer_8py.html" title="This file handles receiving ascii_image() print statements. ">camera_viewer.py</a> </p>
+<h2><a class="anchor" id="code"></a>
+The_Code</h2>
+<h3><a class="anchor" id="mlx_cam"></a>
+mlx_cam.py</h3>
+<p><a class="el" href="mlx__cam_8py.html" title="RAW VERSION This version uses a stripped down MLX90640 driver which produces only raw data...">mlx_cam.py</a> is almost entirly unchanged from the provided <a class="el" href="mlx__cam_8py.html" title="RAW VERSION This version uses a stripped down MLX90640 driver which produces only raw data...">mlx_cam.py</a> except for the addition of a new function 'ascii_image_dfs' that takes a dictionary of points as a way of displaying only the blob we are planning on shooting at</p>
+<h3><a class="anchor" id="Taskfiles"></a>
+Taskfiles</h3>
+<p>We are using <a class="el" href="task__share_8py.html" title="This file contains classes which allow tasks to share data without the risk of data corruption by int...">task_share.py</a> and <a class="el" href="cotask_8py.html" title="This file contains classes to run cooperatively scheduled tasks in a multitasking system...">cotask.py</a> in there unedited state.</p>
+<h3><a class="anchor" id="MotorDriver"></a>
+MotorDriver.py</h3>
+<p>This file implments two axis motor driver that is entirly ripped from lab3. This is used to control the yaw and pitch axis motors as seen in '<a class="el" href="TurretDriver_8py.html" title="This file contains a class to a Turreted Nerf gun along with functions for implementing. ">TurretDriver.py</a>'</p>
+<h3><a class="anchor" id="EncoderReader"></a>
+EncoderReader.py</h3>
+<p>This file interfaces with the stm timer modules to count encoder ticks with reasonable over/under flow detection. This is used to implement the closed loop control.</p>
+<h3><a class="anchor" id="ClosedLoopController"></a>
+ClosedLoopController.py</h3>
+<p>This file implements a closed loop p controller used to provide feedback for the pitch and yaw axises as seen in '<a class="el" href="TurretDriver_8py.html" title="This file contains a class to a Turreted Nerf gun along with functions for implementing. ">TurretDriver.py</a>'</p>
+<h3><a class="anchor" id="TurretDriver"></a>
+TurretDriver.py</h3>
+<p>This defines and implements the various tasks that are used by the scheduler in order to detect, aim at, and shoot the largest target in a reduced POV in front of the camera. The <a class="el" href="TurretDriver_8py.html" title="This file contains a class to a Turreted Nerf gun along with functions for implementing. ">TurretDriver.py</a> contains methods for adding tasks to the scheduler and running the scheduler until forced to stop by a keyboard interrupt.</p>
+<h3><a class="anchor" id="camtest"></a>
+camtest.py</h3>
+<p>This is the stm code that served as the prototype for the camera tracking code.</p>
+<h3><a class="anchor" id="camera_viewer"></a>
+camera_viewer.py</h3>
+<p>This file allows a user to receive print statements from the stm and display them in a terminal window such that the camera images from mlx_cam can be viewed. This was used for algorithm validation.</p>
+<h3><a class="anchor" id="turrettest"></a>
+turrettest.py</h3>
+<p>This is the main</p>
 <h2><a class="anchor" id="Task_Diagram"></a>
 Task_Diagram</h2>
 <div class="image">
@@ -100,9 +130,8 @@ Pitch_State_Diagram</h2>
  <h2><a class="anchor" id="Yaw_State_Diagram"></a>
 Yaw_State_Diagram</h2>
 <div class="image">
-<img src="Yaw_Diagram.drawio" alt="Yaw_Diagram.drawio"/>
-<div class="caption">
-(copy).png</div></div>
+<img src="Yaw_Diagram.drawio (copy).png" alt="Yaw_Diagram.drawio (copy).png"/>
+</div>
  <h2><a class="anchor" id="Shooting_State_Diagram"></a>
 Shooting_State_Diagram</h2>
 <div class="image">

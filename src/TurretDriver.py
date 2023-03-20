@@ -128,12 +128,12 @@ def yaw_control(shares):
     @param shares A list holding the share and queue used by this task
     """
     # Get references to the share and queue which have been passed to this task
-    (yaw,steady_state) = shares
+    (yaw,yawlock) = shares
     n = int(yaw.get())
     (encoder,motorA,controller) = init_yaw(n)
     prev = [0]
     while True:
-        cur =steady_state.get()
+        cur =yawlock.get()
         while(cur == 4):
             yield 0
         if prev == 0 and cur == 1:
@@ -141,11 +141,11 @@ def yaw_control(shares):
         control_loop_one(encoder,motorA,controller,yaw,prev)
         if(abs(controller.target - encoder.ticks) < 300):
             if(cur != 2):
-                steady_state.put(1)
+                yawlock.put(1)
             else:
-                steady_state.put(3)
+                yawlock.put(3)
         else:
-            steady_state.put(0)
+            yawlock.put(0)
         prev = cur
         yield 0
 
@@ -167,7 +167,7 @@ def real_camera(shares):
     image and determining a target angle to shoot at
     @param shares  a tuple of shares to set target yaw angles and state to determine when to run the camera code
     """
-    (yaw,steady_state) = shares
+    (yaw,yawlock) = shares
 
     #start the i2c connection
     i2c_bus = machine.I2C(1)
@@ -178,7 +178,7 @@ def real_camera(shares):
     camera = MLX_Cam(i2c_bus)
     while(True):
         #if the gun isn't at a stable state dont do anything
-        while steady_state.get() != 1 :
+        while yawlock.get() != 1 :
             print("not ready for cam")
             yield 0 
         #start on a new frame
@@ -221,10 +221,10 @@ def real_camera(shares):
         collect()
         yield 0
 
-def shoot_fun(share):
+def shoot_fun(yawlock):
     '''!
     function for determining when to shoot and turn the correct motors on
-    @param share the current state of the turret
+    @param yawlock the current state of the turret
     '''
     #init the needed gun pins
     in1 = pyb.Pin(pyb.Pin.board.PB3,pyb.Pin.OUT_PP)
@@ -243,11 +243,11 @@ def shoot_fun(share):
         yield 0
     #wait for the turret to reach stread state and turn off
     #additional camera images
-    while(share.get() != 3):
-        share.put(2)
+    while(yawlock.get() != 3):
+        yawlock.put(2)
         print("wainting to take the sh")
         yield 0
-    share.put(1)  
+    yawlock.put(1)  
     #shoot the gun!
     print("taking the shot")
     in3.high()
@@ -261,7 +261,7 @@ def shoot_fun(share):
     print("DONE")
     #stop doing anything selse.
     while(True):
-        share.put(4)
+        yawlock.put(4)
         yield 0 
 
 class TurretDriver:

@@ -3,6 +3,17 @@ var NAVTREE =
   [ "ME 405 Term Project", "index.html", [
     [ "ME405", "index.html", [
       [ "Software_Design", "index.html#Software_Design", [
+        [ "The_Code", "index.html#code", [
+          [ "mlx_cam.py", "index.html#mlx_cam", null ],
+          [ "Taskfiles", "index.html#Taskfiles", null ],
+          [ "MotorDriver.py", "index.html#MotorDriver", null ],
+          [ "EncoderReader.py", "index.html#EncoderReader", null ],
+          [ "ClosedLoopController.py", "index.html#ClosedLoopController", null ],
+          [ "TurretDriver.py", "index.html#TurretDriver", null ],
+          [ "camtest.py", "index.html#camtest", null ],
+          [ "camera_viewer.py", "index.html#camera_viewer", null ],
+          [ "turrettest.py", "index.html#turrettest", null ]
+        ] ],
         [ "Task_Diagram", "index.html#Task_Diagram", null ],
         [ "Pitch_State_Diagram", "index.html#Pitch_State_Diagram", null ],
         [ "Yaw_State_Diagram", "index.html#Yaw_State_Diagram", null ],
