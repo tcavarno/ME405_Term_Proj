@@ -53,18 +53,21 @@ class PController:
     def set_setpoint(self, new_target):
         """!
         Set a new target position.
+        @param NA
         """
         self.target = new_target
 
     def set_Kp(self, new_gain):
         """!
         Set a new Kp.
+        @param NA
         """
         self.gain = new_gain
 
     def get_response(self):
         """!
         Print all times and positions.
+        @param NA
         """
         for i in range(len(self.times)):
             print(f"{self.times[i]},{self.ticks[i]}")
@@ -73,6 +76,7 @@ class PController:
     def reset_response(self):
         """!
         Reset the controller times, ticks, and start time.
+        @param NA
         """
         self.times = []
         self.ticks = []

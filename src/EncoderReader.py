@@ -46,6 +46,7 @@ class EncoderReader:
         """!
         Reads the counter and calculates the number of ticks.
         Also accounts for underflow and overflow
+        @param NA
         """
         #get current encoder count
         self.cur = self.timer.counter()
@@ -70,6 +71,7 @@ class EncoderReader:
     def zero(self):
         """!
         Sets ticks to zero
+        @param NA
         """
         self.ticks = 0
         self.prev = 0

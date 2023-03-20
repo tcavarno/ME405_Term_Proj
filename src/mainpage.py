@@ -39,10 +39,10 @@
     the camera images from mlx_cam can be viewed. This was used for algorithm validation.
 
     @subsubsection turrettest turrettest.py
-    This is the main 
+    This is the main script to run the turret. It sets up all objects then waits for a button press to start the scheduler
 
     @subsection Task_Diagram Task_Diagram
-    \image html Task_Diagram.drawio.png
+    \image html Task_Diagram_Updated.png
     @subsection Pitch_State_Diagram Pitch_State_Diagram 
     \image html Pitch_Diagram.drawio.png
     @subsection Yaw_State_Diagram Yaw_State_Diagram

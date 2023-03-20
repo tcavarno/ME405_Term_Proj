@@ -297,6 +297,7 @@ class TurretDriver:
     def pitch(self):
         """!
         add a pitch task to the scheduler defaults to a set pitch height
+        @param NA
         """
         if self.pitch_task == None:
             self.pitch_task = cotask.Task(pitch_control,name = "pitch",priority=3, period=50,
@@ -309,6 +310,7 @@ class TurretDriver:
     def cam(self):
         """!
         Add the camera processing task to the scheduler
+        @param NA
         """
         if self.fake_task == None:
             self.fake_task = cotask.Task(real_camera,name = "real",priority=1, period=250,
@@ -319,6 +321,7 @@ class TurretDriver:
     def shoot(self):
         """!
         Add the shoot task to the scheduler
+        @param NA
         """
 
         self.shoot = cotask.Task(shoot_fun,name = "shoot",priority=2, period=100,
@@ -329,6 +332,7 @@ class TurretDriver:
         """!
         Infinitly run the task scheduler until a keyboard
         interrupt is triggered.
+        @param NA
         """
         while True:
             try:

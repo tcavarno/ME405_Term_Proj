@@ -22,6 +22,7 @@ import sys
 def wait_for_start():
     """!
     Recursivly waits for the user to type start
+    @param NA
     """
     inp = input("Please input start to continue: ")
     if( inp.strip() != "start"):
@@ -33,6 +34,7 @@ def cam_stream():
     1) Serve frames via print
     2) Test the dfs camera alrorithm and serve those
     frames for validation
+    @param NA
 
     """
     

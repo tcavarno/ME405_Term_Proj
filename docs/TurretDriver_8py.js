@@ -7,7 +7,7 @@ var TurretDriver_8py =
     [ "init_yaw", "TurretDriver_8py.html#a44ef256c89c301aff545fae5ec5b024f", null ],
     [ "pitch_control", "TurretDriver_8py.html#a93104c89df843cb923bad0dd6715b48f", null ],
     [ "real_camera", "TurretDriver_8py.html#ab9ec9e74340658e7d95613ea08f2c1da", null ],
-    [ "shoot_fun", "TurretDriver_8py.html#a186a255af9c3d47266b988d0389ae37a", null ],
+    [ "shoot_fun", "TurretDriver_8py.html#a0aac611166bd0c42bb94ceefa7883885", null ],
     [ "yaw_control", "TurretDriver_8py.html#ae20eca9113d263ced955666bc36babfb", null ],
     [ "DEGREES_TO_TICKS", "TurretDriver_8py.html#ab0de26c477ac54db1705c061ac68c242", null ]
 ];

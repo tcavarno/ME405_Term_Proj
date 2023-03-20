@@ -184,7 +184,7 @@ def can_visit(img,x,y):
     A helper function to determine if a point is able to be visited
     @param img a 1d array of size IMAGE_SIZE_N
     @param x the x value of a pixel to check visitation 
-    #param y the y value of a pixel to check visitation 
+    @param y the y value of a pixel to check visitation 
     """
     #convert to 1d array index
     img_index = (WIDTH_N)*y+x

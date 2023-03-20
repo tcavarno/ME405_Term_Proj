@@ -17,6 +17,7 @@ import machine
 def main():
    """!
    Init a turret and start a match after a button press
+   @param NA
    """
    #init the turret and turn off some pins
    turret = TurretDriver.TurretDriver()
