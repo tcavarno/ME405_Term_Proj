@@ -29,6 +29,17 @@ The code in this repository was writted to interface with two Ametek/Pittman PG6
 purchased from Amazon. 
 
 ## Circuit Schematics 
+The following components were used electrically for the operation of this project. Their interconnection is shown in Figure 3 and a description is also given below:
+  1x STM32 NUCELO L476RG
+  1x Shoe of Brian 
+  1x IHM04A1 Motor Driver
+  1x L298N Motor Driver
+  2x Variable Power Supply
+  2x 12V Ametek/Pittman DC Motors with Encoders
+  1x MLX90640 Thermal Infrared Camera 
+  1x Snowcinda Toy Gun Firing Pin Mechanism/Motor
+  1x Snowcinda Toy Gun Flywheel Mechanism/Motor
+
 
 ![Figure 3. Wiring Diagram](ME405_WiringDiagram.jpeg)
 
