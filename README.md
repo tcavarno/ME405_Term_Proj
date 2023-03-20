@@ -1,5 +1,5 @@
 # ME405 Term Project 
-## ME 405 
+## ME 405 Team Decent mecha18
 #### **Authors: Tristan Cavarno, Miloh Padgett, Jon Abraham**
 
 The following documentation describes our design for the ME405 Term Project: Learn by Dueling. The objective of this project was to create 
