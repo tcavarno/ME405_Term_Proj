@@ -49,6 +49,10 @@ The STM32 is central to the entire electrical design as it is the microcontrolle
 
 ## Software Design
 
+## Results
+To ensure the system properly aimed and fired, we performed separate camera and calibration tests. To derive the relationship between target position and yaw angle, we emulated duels by placing the camera 8 feet from a target. This test allowed us to verify that the camera had a high enough resolution to make out a human target accurately and reliably at distance. Additionally, we calculated the pixel to distance ratio and worked out the necessary yaw angle with trigonometry. This requires that the camera and turret are placed in consistent locations, so a jig was created to align the camera with the center of the table. 
+
+Though we derived an empirical relationship between the horizontal target position and yaw angle, gun firing, measurement, and motor control inaccuracies made it necessary to fine tune our algorithm. This was done through continuous duel testing and tweaking the distance ratio. Additionally, we changed the period of each task such that the aiming and shooting sequence ran as fast as possible with our hardware. Overall, we were able to consistently take two shots in under 10 seconds and win the duel tournament in our lab section. 
 
 ## Future Recommendations
 
