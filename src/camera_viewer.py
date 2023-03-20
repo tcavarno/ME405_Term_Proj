@@ -1,7 +1,3 @@
-from array import array
-import serial
-from os import system
-
 """!
 @file camera_viewer.py
 This file handles receiving ascii_image() print statements. It also allows to 
@@ -10,6 +6,11 @@ lunix terminal clearing for easier visualization of camera data.
 @author Miloh Padgett, Tristan Cavarno, Jon Abraham
 @date 30-Jan-2023 Original File
 """
+from array import array
+import serial
+from os import system
+
+
 
 '''!
 Width of a camera image

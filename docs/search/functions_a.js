@@ -1,11 +1,7 @@
 var searchData=
 [
-  ['schedule',['schedule',['../classcotask_1_1Task.html#a7c5bee1f632d4f71fd5ca02852b430a5',1,'cotask::Task']]],
-  ['set_5fduty_5fcycle',['set_duty_cycle',['../classMotorDriver_1_1MotorDriver.html#a414db9c247cbb92bcc8aefb4118bc066',1,'MotorDriver::MotorDriver']]],
-  ['set_5fkp',['set_Kp',['../classClosedLoopController_1_1PController.html#a0d7ac24edb3277e1019a822f31032596',1,'ClosedLoopController::PController']]],
-  ['set_5fperiod',['set_period',['../classcotask_1_1Task.html#a310e065fb576dff0e23d075c4e83a5f4',1,'cotask::Task']]],
-  ['set_5fsetpoint',['set_setpoint',['../classClosedLoopController_1_1PController.html#af86623421995c818ac9bed14b03d37e0',1,'ClosedLoopController::PController']]],
-  ['shoot',['shoot',['../classTurretDriver_1_1TurretDriver.html#aa37a036dddefd680faf3db85c2e7f29e',1,'TurretDriver::TurretDriver']]],
-  ['shoot_5ffun',['shoot_fun',['../TurretDriver_8py.html#a186a255af9c3d47266b988d0389ae37a',1,'TurretDriver']]],
-  ['show_5fall',['show_all',['../task__share_8py.html#a130cad0bc96d3138e77344ea85586b7c',1,'task_share']]]
+  ['pitch',['pitch',['../classTurretDriver_1_1TurretDriver.html#a153f163184c8bce995f07009f5b44f8c',1,'TurretDriver::TurretDriver']]],
+  ['pitch_5fcontrol',['pitch_control',['../TurretDriver_8py.html#a93104c89df843cb923bad0dd6715b48f',1,'TurretDriver']]],
+  ['pri_5fsched',['pri_sched',['../classcotask_1_1TaskList.html#a5f7b264614e8e22c28d4c1509e3f30d8',1,'cotask::TaskList']]],
+  ['put',['put',['../classtask__share_1_1Queue.html#ae785bdf9d397d61729c22656471a81df',1,'task_share.Queue.put()'],['../classtask__share_1_1Share.html#ab449c261f259db176ffeea55ccbf5d96',1,'task_share.Share.put()']]]
 ];

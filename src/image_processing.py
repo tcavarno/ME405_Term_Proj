@@ -1,86 +1,85 @@
-from array import array
-import random
-from gc import collect
-'''!
+"""!
 @file image_processing.py
 This file contains any visual proccessing alorithms needed 
 
 @author Miloh Padgett, Tristan Cavarno, Jon Abraham
 @date 5-Mar-2023 Original File
-'''
+"""
+from array import array
+import random
+from gc import collect
 
-
-'''!
+"""!
 a 2d gaussian kernel in a 1d array.
-'''
+"""
 gaus_kern_5x5 = array('f',[0,.01,.01,.01,0,.01,.05,.11,.05,.01,.01,.11,.25,.11,.01,.01,.05,.11,.05,.01,0,.01,.01,.01,0])
 
-'''!
+"""!
 Defualt Width of an image frame
-'''
+"""
 WIDTH = 32
 
-'''!
+"""!
 Default Heght of an image frame
-'''
+"""
 HEIGHT = 24
 
-'''!
+"""!
 Start width index of a downsized image for 
 faster processing
-'''
+"""
 WIDTH_ST = 6
 
-'''!
+"""!
 End width index of a downsized image for 
 faster processing
-'''
+"""
 WIDTH_END = 32-6
 
-'''!
+"""!
 Total width of a downsized image for 
 faster processing
-'''
+"""
 WIDTH_N = WIDTH_END -WIDTH_ST
 
-'''!
+"""!
 Start heigh index of a downsized image for 
 faster processing
-'''
+"""
 HEIGHT_ST = 0
 
-'''!
+"""!
 End height index of a downsized image for 
 faster processing
-'''
+"""
 HEIGHT_END = 24-8
 
-'''!
+"""!
 Total Height of a downsized image for 
 faster processing
-'''
+"""
 HEIGHT_N = HEIGHT_END-HEIGHT_ST
 
-'''!
+"""!
 Length of a 1d image array after downsizing
-'''
+"""
 IMG_SIZE_N = (WIDTH_N)*(HEIGHT_N)
 
-'''!
+"""!
 Default 1d array size for an image
-'''
+"""
 IMG_SIZE = WIDTH*HEIGHT
 
-'''!
+"""!
 Cut off threshhold for pixel intensity 
-'''
+"""
 THRESHHOLD = 175
 
 class img_pnt:
-    '''!
+    """!
     Simple point class for saving a location in the
     image plane.
-    '''
+    """
     def __init__(self,x,y):
         """!
         @param x 		position in the x direction of a pixel
@@ -147,12 +146,12 @@ def ascii_image(array,biggest, pixel="██", textcolor="0;180;0"):
             print(f"\033[38;2;{textcolor}m")
 
 def apply_kernel_avg(img,middle):
-    '''!
+    """!
     apply a gaussian kernel to a given pixel
 
     @param img an array of WIDTH and HEIGH
     @param middle a pixel that will be corrisond to the center of the kernel
-    '''
+    """
     avg = 0
     for i in range(25):
         kern_row  = i // 5
@@ -170,10 +169,10 @@ def apply_kernel_avg(img,middle):
 
 
 def gaus_blur(img):
-    '''!
+    """!
     Iterate across and and 'img' applying the gaussuan kernelto blur the image
     @param img the image to blur in a 1d array
-    '''
+    """
     collect()
     a = array('Q')
     for i in range(IMG_SIZE):
@@ -181,12 +180,12 @@ def gaus_blur(img):
     return a
 
 def can_visit(img,x,y):
-    '''!
+    """!
     A helper function to determine if a point is able to be visited
     @param img a 1d array of size IMAGE_SIZE_N
     @param x the x value of a pixel to check visitation 
     #param y the y value of a pixel to check visitation 
-    '''
+    """
     #convert to 1d array index
     img_index = (WIDTH_N)*y+x
 

@@ -1,4 +1,10 @@
+"""!
+@file camtest.py
+Test working with the camera outside the main control code 
 
+@author Miloh Padgett, Tristan Cavarno, Jon Abraham
+@date 5-Mar-2023 Original File
+"""
 import utime as time
 from machine import Pin, I2C
 from mlx90640 import MLX90640
@@ -10,13 +16,7 @@ from array import array
 from gc import collect
 from image_processing import HEIGHT,WIDTH,IMG_SIZE,dfs
 import sys
-"""!
-@file camtest.py
-Test working with the camera outside the main control code 
 
-@author Miloh Padgett, Tristan Cavarno, Jon Abraham
-@date 5-Mar-2023 Original File
-"""
 
 
 def wait_for_start():

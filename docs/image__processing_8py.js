@@ -1,0 +1,28 @@
+var image__processing_8py =
+[
+    [ "img_pnt", "classimage__processing_1_1img__pnt.html", "classimage__processing_1_1img__pnt" ],
+    [ "apply_kernel_avg", "image__processing_8py.html#a070b617aae967035d33aa1f807a02f92", null ],
+    [ "ascii_image", "image__processing_8py.html#a1d35d688f3d2cc96e4ae950f44ad3c85", null ],
+    [ "can_visit", "image__processing_8py.html#a3148b9fe4595d83e41705f108c1d1078", null ],
+    [ "dfs", "image__processing_8py.html#a363cc00e0b2735e13f2e6870379dddef", null ],
+    [ "gaus_blur", "image__processing_8py.html#a0d77af3d862a2ed8dc24d93c3d02e0ab", null ],
+    [ "b", "image__processing_8py.html#ad7c2decb02136a4e297e759c5ee380ee", null ],
+    [ "biggest", "image__processing_8py.html#a4f63b1bbfca37b624a878b10e2a9bc66", null ],
+    [ "blob", "image__processing_8py.html#ac2f022c627af456b1f08bb84d8dfdfa3", null ],
+    [ "c", "image__processing_8py.html#a60fe1d1902aeb209e2627dc38c91b8fa", null ],
+    [ "gaus_kern_5x5", "image__processing_8py.html#af60da54b1f0f9be5fc75fcb93f21d58b", null ],
+    [ "hashval", "image__processing_8py.html#a8b372c9350181ae4b30a1bc7d6638926", null ],
+    [ "HEIGHT", "image__processing_8py.html#a320b64f7d60927b558937791738bdf9f", null ],
+    [ "HEIGHT_END", "image__processing_8py.html#a0d2a398f715d5350437f69ddf0c387e8", null ],
+    [ "HEIGHT_N", "image__processing_8py.html#aa222098b0238344a69796b4535353503", null ],
+    [ "HEIGHT_ST", "image__processing_8py.html#a19713a1e3d4da1265aab6e4fc6e70b2b", null ],
+    [ "img_index", "image__processing_8py.html#ae6552d4ad44d03ebacba7aeae61652b7", null ],
+    [ "IMG_SIZE", "image__processing_8py.html#abda765765f58117f1484062aeb9a450a", null ],
+    [ "IMG_SIZE_N", "image__processing_8py.html#a8014d3d97a5f96b8c5e190681b9465a9", null ],
+    [ "s", "image__processing_8py.html#a9d2b9a2f00ebb5f3caa834ebd807c5f5", null ],
+    [ "THRESHHOLD", "image__processing_8py.html#ae4e63210c6fa2a51b1646e3de6ae8c88", null ],
+    [ "WIDTH", "image__processing_8py.html#a426eda87f3c7d25afb5d64052e9027b8", null ],
+    [ "WIDTH_END", "image__processing_8py.html#a5324989e202bc61fbd5ee970f0c80193", null ],
+    [ "WIDTH_N", "image__processing_8py.html#a191a5a2b2645061503b054af86e25781", null ],
+    [ "WIDTH_ST", "image__processing_8py.html#ae2aa77979ad96c68a19aa105e3c04922", null ]
+];

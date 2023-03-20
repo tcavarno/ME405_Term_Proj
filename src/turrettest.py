@@ -1,9 +1,3 @@
-import pyb
-import TurretDriver
-from gc import collect
-import neopixel
-import machine
-
 """!
 @file turrettest.py
 file the contains the code to init and run the turret for
@@ -12,6 +6,13 @@ a match
 @author Miloh Padgett, Tristan Cavarno, Jon Abraham
 @date 1-Mar-2023 Original File
 """
+import pyb
+import TurretDriver
+from gc import collect
+import neopixel
+import machine
+
+
 
 def main():
    """!
@@ -32,7 +33,7 @@ def main():
    turret.shoot()
    while(but.value() == 1):
       pass
-   
+
    #start!
    print("starting")
    but = None
